@@ -4,7 +4,7 @@
 Implement an in-memory database system with a command-line interface that meets specific functionality and performance requirements. Your code should be clear, well-documented, and handle edge cases effectively. You can use libraries except for database-specific or actual database systems. Feel free to use online references, such as Google and Stack Overflow.
 
 ### Instructions:
-Create a command-line program that reads input from STDIN line by line and executes the following database functions. Additionally, provide a README file with instructions on how to run your program.
+Create a command-line program that reads input from STDIN line by line and executes the following database functions. Additionally, provide a README file with instructions on how to run your program. We recomend that you use Github code spaces and be sure to push your branch with your initials and the date you completed the task. 
 
 Database Functions:
 
