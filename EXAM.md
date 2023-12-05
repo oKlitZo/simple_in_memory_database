@@ -113,5 +113,3 @@ Certainly, I can reformat the examples to make them more readable. Here's the sa
 17. `GET b`
 >>> baz
 18. END
-
-These reformatted examples should help candidates understand the sequence of commands and expected outcomes more easily.
