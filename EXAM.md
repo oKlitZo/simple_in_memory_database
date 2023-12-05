@@ -30,80 +30,88 @@ Certainly, I can reformat the examples to make them more readable. Here's the sa
 
 **Example 1: Basic Commands**
 
-1. Execute: `SET a foo`
-2. Execute: `SET b foo`
-3. Execute: `COUNT foo`
-   - Expected Output: `2`
-4. Execute: `COUNT bar`
-   - Expected Output: `0`
-5. Execute: `DELETE a`
-6. Execute: `COUNT foo`
-   - Expected Output: `1`
-7. Execute: `SET bbaz`
-8. Execute: `COUNT foo`
-   - Expected Output: `0`
-9. Execute: `GET bbaz`
-   - Expected Output: `NULL`
-10. Execute: `GET BNUL`
-11. Execute: `END`
+1. `GET a`
+>>> NULL
+2. `SET a foo`
+3. `SET b foo`
+4. `COUNT foo`
+>>> 2
+5. `COUNT bar`
+>>> 0
+6. `DELETE a`
+7. `COUNT foo`
+>>> 1
+8. `SET b baz`
+9. `COUNT foo`
+>>> 0
+10. `GET b`
+>>> baz
+11. `GET B`
+>>> NULL
+12. END
 
 **Example 2: Multiple Transactions**
 
-1. Execute: `SET a foo`
-2. Execute: `SET a foo`
-3. Execute: `COUNT foo`
-   - Expected Output: `1`
-4. Execute: `GET a foo`
-5. Execute: `DELETE a`
-6. Execute: `GET aNUL`
-7. Execute: `COUNT foo`
-   - Expected Output: `0`
-8. Execute: `END`
+1. `SET a foo`
+2. `SET a foo`
+3. `COUNT foo`
+>>> 1
+4. `GET a`
+>>> foo
+5. `DELETE a`
+6. `GET a`
+>>> NULL
+7. `COUNT foo`
+>>> 0
+8. END
 
 **Example 3: Nested Transactions**
 
-1. Execute: `BEGIN`
-2. Execute: `SET a foo`
-3. Execute: `GET a foo`
-   - Expected Output: `foo`
-4. Execute: `BEGIN`
-5. Execute: `SET abar`
-6. Execute: `GET abar`
-   - Expected Output: `abar`
-7. Execute: `SET abaz`
-8. Execute: `ROLLBACK`
-9. Execute: `GET a foo`
-   - Expected Output: `foo`
-10. Execute: `ROLLBACK`
-11. Execute: `GET aNUL`
-12. Execute: `END`
+1. `BEGIN`
+2. `SET a foo`
+3. `GET a`
+>>> foo
+4. `BEGIN`
+5. `SET a bar`
+6. `GET a`
+>>> bar
+7. `SET a baz`
+8. `ROLLBACK`
+9. `GET a`
+>>> foo
+10. `ROLLBACK`
+11. `GET a`
+>>> NULL
+12. END
 
 **Example 4: Nested Transactions with COMMIT**
 
-1. Execute: `SET a foo`
-2. Execute: `SET bbaz`
-3. Execute: `BEGIN`
-4. Execute: `GET a foo`
-   - Expected Output: `foo`
-5. Execute: `SET abar`
-6. Execute: `COUNT bar`
-   - Expected Output: `1`
-7. Execute: `BEGIN`
-8. Execute: `COUNT bar`
-   - Expected Output: `1`
-9. Execute: `DELETE a`
-10. Execute: `GET aNUL`
-11. Execute: `COUNT bar`
-   - Expected Output: `0`
-12. Execute: `ROLLBACK`
-13. Execute: `GET abar`
-   - Expected Output: `bar`
-14. Execute: `COUNT bar`
-   - Expected Output: `1`
-15. Execute: `COMMIT`
-16. Execute: `GET abar`
-   - Expected Output: `bar`
-17. Execute: `GET bbaz`
-18. Execute: `END`
+1. `SET a foo`
+2. `SET b baz`
+3. `BEGIN`
+4. `GET a`
+>>> foo
+5. `SET a bar`
+6. `COUNT bar`
+>>> 1
+7. `BEGIN`
+8. `COUNT bar`
+>>> 1
+9. `DELETE a`
+10. `GET a`
+>>> NULL
+11. `COUNT bar`
+>>> 0
+12. `ROLLBACK`
+13. `GET a`
+>>> bar
+14. `COUNT bar`
+>>> 1
+15. `COMMIT`
+16. `GET a`
+>>> bar
+17. `GET b`
+>>> baz
+18. END
 
 These reformatted examples should help candidates understand the sequence of commands and expected outcomes more easily.
